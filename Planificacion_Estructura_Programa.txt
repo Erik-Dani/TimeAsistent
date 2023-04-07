@@ -1,0 +1,17 @@
+Programa para manejo de tiempo de estudio En este repositorio esta contenido todo el proceso para crear un programa que ayuda a gestionar 
+el tiempo de estudio a traves de la lectura de un archivo de texto que contiene la informacion de las materias matriculadas por un estudiante
+con el siguiente formato:
+
+|codigo de la materia |Nombre de la materia |horario de la clases en la semana de la materia |Horas practicas |Horas teoricas |Numero de creditos 
+
+A continuacion se ilustra con un ejemplo:
+
+|2536101 |Descubriendo la fisica  |MJ 10-12 |4 |0 |3 
+|2555131 |Calculo diferencial     |MJ 10-12 |4 |0 |3 
+|2555101 |Algebra y trigonometria |MJ 10-12 |4 |0 |3 
+|2555121 |Geometria vectorial     |MJ 10-12 |4 |0 |3 
+|2598511 |Informatica I           |MJ 10-12 |4 |3 |4
+
+Para el calculo de las horas por semana vamos a tomar el valor de los creditos y lo vamos a usar en la siguiente operacion int horasPorSemana =(numero de creditos)  3 - 4;
+
+Si la materia tiene laboratorio entonces
