@@ -1,5 +1,5 @@
-|2536101 |Descubriendo la fisica  |MJ 10-12 |4 |0 |3 
-|2555131 |Calculo diferencial     |MJ 10-12 |4 |0 |3 
-|2555101 |Algebra y trigonometria |MJ 10-12 |4 |0 |3 
-|2555121 |Geometria vectorial     |MJ 10-12 |4 |0 |3 
-|2598511 |Informatica I           |MJ 10-12 |4 |3 |4
+|2536101 |Descubriendo la fisica  |LW |14-16 |4 |0 |3 
+|2555131 |Calculo diferencial     |WV |10-12 |4 |0 |3 
+|2555101 |Algebra y trigonometria |MJ |10-12 |4 |0 |3 
+|2555121 |Geometria vectorial     |WV |12-14 |4 |0 |3 
+|2598511 |Informatica I           |LM |08-10 |4 |3 |4
