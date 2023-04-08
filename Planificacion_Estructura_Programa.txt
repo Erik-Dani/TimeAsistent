@@ -1,6 +1,30 @@
 Programa para manejo de tiempo de estudio En este repositorio esta contenido todo el proceso para crear un programa que ayuda a gestionar 
-el tiempo de estudio a traves de la lectura de un archivo de texto que contiene la informacion de las materias matriculadas por un estudiante
-con el siguiente formato:
+el tiempo de estudio a traves de la escritura y lectura de un archivo de texto que v a contener la informacion de las materias matriculadas por un estudiante
+en su semestre academico.
+ 
+Funcionalidades que contendra el programa:
+-> 1 registrar materias.
+-> 2 registrar horario.
+-> 3 gestionar su tiempo de estudio en los espacios disponibles durante la semana.
+
+
+Aspectos de preferencia para el desarrollo del la actividad:
+
+Para el presente trabajo vamos a manejar el siguiente formato para la franja horarias disponible para programar las horas de estudio.
+
+->La franja horaria va desde las 04:00 am hasta las 22: 00 horas
+
+->Los dias de las semana disponibles seramn de Lunes a viernes.
+
+Para el desarrollo del punto 1:
+
+1-> se le pedira indicar el numero de materias que tiene matriculadas para el presente semestre.
+
+2-> Para el registro se le pediran al usuario ingresar 6 datos con los cuales se tendra la informacion necesaria de cada una de las materias,
+
+los datos a ingresar seran los siguientes:
+codigo de la materia, nombre, horario de la clase, numero de horas teoricas a la semana, numero de horas practicas, numero de creditos.
+La informacion ingresada se guardara con el siguiente formato: 
 
 |codigo de la materia |Nombre de la materia |horario de la clases en la semana de la materia |Horas practicas |Horas teoricas |Numero de creditos 
 
@@ -11,6 +35,11 @@ A continuacion se ilustra con un ejemplo:
 |2555101 |Algebra y trigonometria |MJ 10-12 |4 |0 |3 
 |2555121 |Geometria vectorial     |MJ 10-12 |4 |0 |3 
 |2598511 |Informatica I           |MJ 10-12 |4 |3 |4
+
+Para 
+
+Para el desarrollo del punto 2:
+
 
 Para el calculo de las horas por semana vamos a tomar el valor de los creditos y lo vamos a usar en la siguiente operacion int horasPorSemana =(numero de creditos)  3 - 4;
 

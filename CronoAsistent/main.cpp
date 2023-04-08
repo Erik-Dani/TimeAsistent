@@ -7,15 +7,21 @@ using namespace std;
 int main(void)
 {
     int num_materias=0;
+    string codigo, materia, dias, horas,H_teoria,H_practica, creditos;
     cout<<"Por favor ingrese el numero de materias que va a registrar: "<<endl;
     cin>>num_materias;
     cout<<"Ingrese el Numero de Codigo de la mateira: "<<endl;
+    cin>>codigo;
     cout<<"Ingrese el Horario de la materia"<<endl;
+    cin>>materia;
     cout<<"Ingrese el Nombre de la materia: "<<endl;
+    cin>>horas;
     cout<<"Ingrese el Numero de Creditos de la Materia: "<<endl;
+    cin>>H_teoria;
     cout<<"Ingrese el Numero de horas teoricas:  "<<endl;
+    cin>>H_practica;
     cout<<"Ingrese el Numero de horas practicas: "<<endl;
-
+    cin>>creditos;
 
 //    int i=0;
 //   string Array[5], Datos,  codigo, materia, dias, horas,H_teoria,H_practica, creditos, codigoh;
