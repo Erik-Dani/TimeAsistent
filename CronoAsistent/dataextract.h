@@ -8,6 +8,6 @@
 
 using namespace std;
 void Horario(string, string, string);
-
+void Mat_Registr();
 
 #endif // DATAEXTRACT_H
