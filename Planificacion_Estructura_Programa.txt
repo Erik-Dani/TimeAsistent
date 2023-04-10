@@ -36,11 +36,22 @@ A continuacion se ilustra con un ejemplo:
 |2555121 |Geometria vectorial     |MJ 10-12 |4 |0 |3 
 |2598511 |Informatica I           |MJ 10-12 |4 |3 |4
 
-Para 
+
+Para la estructura de los datos tendremos un arreglo dinamico  tipo char unidimencional  donde se almacenara esta informacion para luego guardarla en el archivo de texto.
+Para la parte del arreglo que se manejara de manera dinamica, la cantidad de memoria a reservar sera asignando de acuerdo al numero ingresado por el usuario para el registro de materias.
+Si el usuario intenta ingresar mas de el numero de materias que indico inicialmente le diremos que no es posible hacerlo.
+
 
 Para el desarrollo del punto 2:
 
+Para imprimer el horario de acuerdo con las materias registradas, del arreglo donde tenemos nuestra informacion vamos a extraer el codigo de la materia y su respectivo horario de clases 
+para guardarlo en un arreglo Dinamico donde tendremos indicados Los 5 dias dispuestos para actividades academicas. Una ves tenemos la informacion de el horario procedemos a imprimirlapara
+que el usuario la pueda visualizar.
 
-Para el calculo de las horas por semana vamos a tomar el valor de los creditos y lo vamos a usar en la siguiente operacion int horasPorSemana =(numero de creditos)  3 - 4;
+Desarrollo del punto 3.
 
-Si la materia tiene laboratorio entonces
+En este punto vamos a calcular el numero de horas que tenemos que dedicar para cada una de las asignaturas calculando el numero de horas semanales que se tienen que dedicar por semana a materia
+y restando el numero de horas de clase de la materia en la semana.
+
+para la primera parte del calculo vamos a usar la informacion de los creditos para cada una de las asignaturas.
+
