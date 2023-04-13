@@ -1,3 +1,5 @@
+proceso de 
+
 Programa para manejo de tiempo de estudio En este repositorio esta contenido todo el proceso para crear un programa que ayuda a gestionar 
 el tiempo de estudio a traves de la escritura y lectura de un archivo de texto que v a contener la informacion de las materias matriculadas por un estudiante
 en su semestre academico.
@@ -12,29 +14,52 @@ Aspectos de preferencia para el desarrollo del la actividad:
 
 Para el presente trabajo vamos a manejar el siguiente formato para la franja horarias disponible para programar las horas de estudio.
 
-->La franja horaria va desde las 04:00 am hasta las 22: 00 horas
+->La franja horaria va desde las 06:00 am hasta las 18:00 horas
 
-->Los dias de las semana disponibles seramn de Lunes a viernes.
+->Los dias de las semana disponibles seran de Lunes a viernes.
 
 Para el desarrollo del punto 1:
 
-1-> se le pedira indicar el numero de materias que tiene matriculadas para el presente semestre.
+1-> Se le pedira indicar el numero de materias que tiene matriculadas para el presente semestre. con este dato vamos a crear un arreglo dianmico y a reservar memoria de acuerdo al 
+	numero ingresado.
+los arreglos para los datos a inresar estaran definidos con una longitud de acuerdo al dato requerido.
 
-2-> Para el registro se le pediran al usuario ingresar 6 datos con los cuales se tendra la informacion necesaria de cada una de las materias,
+Para el registro de materias.
 
-los datos a ingresar seran los siguientes:
-codigo de la materia, nombre, horario de la clase, numero de horas teoricas a la semana, numero de horas practicas, numero de creditos.
-La informacion ingresada se guardara con el siguiente formato: 
+	Cabe aclarar que en este primer punto se le preguntara al usuario antes de registrar cada materia si esta tiene laboratorio.
+ 	si el usuario indica que si entonces registraremos el codigo de la materia 2 veces. la primera con el siguiente formato:
 
-|codigo de la materia |Nombre de la materia |horario de la clases en la semana de la materia |Horas practicas |Horas teoricas |Numero de creditos 
+	codigo de la materia, nombre, horario de la clase, numero de horas teoricas a la semana, numero de horas practicas, numero de creditos.
+	La informacion ingresada se guardara con el siguiente formato: 
+	|codigo de la materia |Nombre de la materia |Dias de clase teorica|Hora de la clase|Horas practicas |Horas teoricas |Numero de creditos|
+
+	los datos a ingresar para la materia con laboratorio seran los siguientes:
+	codigo de la materia,dia, horas de la clase en 2 partes, si la clase de laboratorio va de 12-15 entonces se ingresara en el formato de 2
+	horas como se ejemplifica a continuacion: codigo,"laboratorio2, hora1= 12-14, hora2= 14-16 y asi para cualquier materia con laboratorio.
+	se guardara con el siguiente formato: 
+	|2598511 |Laboratorio|M |12-14 |14-16|
+	
+	|codigo de la materia |Nombre de la materia |Dias de clase teorica|Hora de la clase|Horas practicas |Horas teoricas |Numero de creditos|
+	luego para el laboratorio usaremos el siguiente formato :|codigo|por defecto este campo tendra el nombre laboratorio|horario1|horario2|
+
+	si el usuario indica que no entonces usaremos solo el siguiente formato: 
+	los datos a ingresar seran los siguientes:
+	codigo de la materia, nombre, horario de la clase, numero de horas teoricas a la semana, numero de horas practicas, numero de creditos.
+	La informacion ingresada se guardara con el siguiente formato: 
+	|codigo de la materia |Nombre de la materia |Dias de clase teorica|Hora de la clase|Horas practicas |Horas teoricas |Numero de creditos|
+
+A las materias con laboratorio le asignaremos un total de 4 horas de clases ya que el formato a usar para la asignacion y manejo de horas de estudio se va a hacer 
+
 
 A continuacion se ilustra con un ejemplo:
 
-|2536101 |Descubriendo la fisica  |MJ 10-12 |4 |0 |3 
-|2555131 |Calculo diferencial     |MJ 10-12 |4 |0 |3 
-|2555101 |Algebra y trigonometria |MJ 10-12 |4 |0 |3 
-|2555121 |Geometria vectorial     |MJ 10-12 |4 |0 |3 
-|2598511 |Informatica I           |MJ 10-12 |4 |3 |4
+|2536101 |Descubriendo la fisica  |LW|16-18 |4 |0 |3 
+|2555131 |Calculo diferencial     |LW|10-12 |4 |0 |3 
+|2555101 |Algebra y trigonometria |WV|08-10 |4 |0 |3 
+|2555121 |Geometria vectorial     |MJ|10-12 |4 |0 |3 
+|2598511 |Informatica I           |LM|10-12 |4 |3 |4
+|2598511 |Laboratorio             |M |12-14 |14-16|
+
 
 
 Para la estructura de los datos tendremos un arreglo dinamico  tipo char unidimencional  donde se almacenara esta informacion para luego guardarla en el archivo de texto.
@@ -49,9 +74,26 @@ para guardarlo en un arreglo Dinamico donde tendremos indicados Los 5 dias dispu
 que el usuario la pueda visualizar.
 
 Desarrollo del punto 3.
+Para este punto usaremos: Arreglo_dinamico[5], donde tendremos la informacion en un formato que contendra los intervalos de tiempo de 2 horas que iran desde las 06:00 hasta las 18:00 hrs.
+el formato es el siguiente: |06-08|08-10|10-12|12-14|14-16|16-18|, este fomato estara de la siguiente forma para ser modificado de acuerdo a las materias registradas y al uso del item 1 o 2 del punto 3.
+"Dia+|   |   |   |   |   |    |;
 
-En este punto vamos a calcular el numero de horas que tenemos que dedicar para cada una de las asignaturas calculando el numero de horas semanales que se tienen que dedicar por semana a materia
-y restando el numero de horas de clase de la materia en la semana.
 
-para la primera parte del calculo vamos a usar la informacion de los creditos para cada una de las asignaturas.
+Para el presente punto tendremos 2 items.
 
+1--> Generar una opcion para el horario de estudio de acuerdo con la informacion de cada una de las materias.
+	Para esta opcion vamos a usar la informacion de el numero de creditos asi calcular el numero de horas de estudio que se deben dedicar a la materia adicionales a las horas de clase 
+	teorica durante la semana, para esto usaremos la siguiente operacion: ( #Creditos por 3) - #_Horas de_clase = #_Horas_de_estudio_independiente.
+	la asignacion de horas de estudio se hara en intervalos de 2 horas, por lo cual si el resultado en #_Horas_de_estudio_independiente. un numero impar netonces le sumamos uno para asi asignar
+	las horas de estudio de dicha materia en un intervalo de 2 horas.
+
+	Una ves tengamos el numero de horas de estudio independiente miramos la disponibilidad que tenemos en nuestro horario y vamos a asignar horas de estudio en diferentes dias hasta cumplir con 
+	el numero horas de estudio independiente, esto lo vamos a hacer para todas las materias registradas.
+	
+	La asignacion de horas de estudio en determinados dias la podemos hacer de forma random o de forma tal que las horas de estudio adicionales esten programadas en los dias donde tengamos que 
+	ver dicha materia de acuerdo con la disponibilidad que de timepo que tengamos ese dia. si no hay disponibilidad la asignamos en otro dia.
+		
+ 
+2--> Asignar horas de estudio que seran ingresadas por el usuario en cada uno de los dias de la semana de acuerdo con la disponibilidad.
+	le pedimos registrar sus horarios de estudio de a cuerdo con la disponibilidad de tiempo que tenga en los diferentes dias de la semana indicandole el numero de horas de 
+	estudio independiente que tiene que dedicar para cada materia.
