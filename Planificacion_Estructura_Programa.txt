@@ -34,28 +34,29 @@ Para el registro de materias.
 
 Para el registro de materias se le pedirá al usuario ingresar los datos en el siguiente 	orden: 
 
-Código de la materia, Nombre, Numero de horas de teoría, número de horas prácticas, 	número de créditos. 
+Código de la materia, Nombre, Numero de horas de teoría, número de horas prácticas,  número de créditos. 
 
 Se tendrá una sentencia para contar el número de materias con horas de estudio practicas ya que estas serán las que tienen sesión de laboratorio lo cual es muy importante a tener en cuenta para el punto 2. 
 
- La información ingresada se guardará con el siguiente formato:   
+La información ingresada se guardará con el siguiente formato:   
 
 A continuación, se ilustra con un ejemplo: 
 
-|2536101 |Descubriendo la física  |LW|16-18 |4 |0 |3  
+2536101 |Descubriendo la física  |4 |0 |3  
 
-|2555131 |Calculo diferencial     |LW|10-12 |4 |0 |3  
+2555131 |Calculo diferencial     |4 |0 |3  
 
-|2555101 |Algebra y trigonometría |WV|08-10 |4 |0 |3  
+2555101 |Algebra y trigonometría |4 |0 |3  
 
-|2555121 |Geometría vectorial     |MJ |10-12 |4 |0 |3  
+2555121 |Geometría vectorial     |4 |0 |3  
 
-|2598511 |Informática I           |LM|10-12 |4 |3 |4 
+2598511 |Informática I           |4 |3 |4 
   
 
-Para la estructura de los datos tendremos un arreglo dinámico tipo char [n_posiciones] donde se almacenará esta información para luego guardarla en el archivo de texto. 
+Para la estructura de los datos tendremos un arreglo dinámico tipo char Con el Nombre de Materias[a][b][c] donde se almacenará esta información para luego pasarla a un Arreglo lineal el cual contendra
+toda la informacion para guardarla en el archivo de texto. 
 
-Una vez se tenga toda la información se creará un archivo .txt donde se guardarán todos los datos ingresados con el formato indicado. 
+Una vez se tenga toda la información se creará un archivo .txt donde se guardarán todos los datos ingresados con el formato indicado y se liberara la memoria reservada. 
 
  
 
@@ -69,7 +70,7 @@ Para cumplir con esto el usuario ingresara los siguientes datos:
 
 Código de la materia y se le mostrara un menú de opciones para indicar el día y la hora de la clase.  
 
-Esto se asignará en un arreglo dinámico tipo char [n_posiciones] donde guardaremos la información con el siguiente formato. 
+Esto se asignará en un arreglo dinámico tipo char Horario[a][b][c] donde guardaremos la información con el siguiente formato. 
 
 En el caso de que solo sean 2 materias y estas estén registradas en un horario de MJ de 10-12 con código 1234567 1entonces al guardar la información se tendrá de la siguiente manera. 
 
@@ -81,12 +82,12 @@ Miércoles |06-08|08-10|10-12|12-14|14-16|16-18|
 
 Para la primera materia entonces tendríamos: 
 
-|__Dia_|___________Hora_________________________________
-|______|_06-08_|_08-10_|_______________________________
+|__Dia_|___________Hora________________________________|
+|______|_06-08_|_08-10_|_______________________________|
 
 |Martes|2155101|       |       |1234567|       |       | 
 
-|Jueves|       |       |       |1234567|       |       | 
+|Jueves|       |       |       |       |       |       | 
 
  
 
