@@ -228,10 +228,10 @@ void rellenarArreglo(char *arreglo, int longitud, char relleno) {
 
 void random(char ***horario, char ***Materias, int Num){
 
-    for(int i = 0; i<Num; i++){
+    for(int i = 1; i<Num; i++){
 
-        int aux = (DatNum(Materias[i][4])*3)-(DatNum(Materias[i][2])+DatNum(Materias[i][3]));
-
+        int aux = (conversor(Materias[i][4])*3)-(conversor(Materias[i][2])+conversor(Materias[i][3]));
+        cout<<"la operacion da: "<<aux<<endl;
         int Q = 0;
         while(Q<aux){
             int dia = 1+rand()%(6-1);
@@ -241,8 +241,6 @@ void random(char ***horario, char ***Materias, int Num){
             cout<<dia<<" "<<hora<<endl;
 
             if(horario[hora][dia][0] == ' '){
-
-                cout<<"Funciona :D"<<endl;
                 Q++;
                 horario[hora][dia] = Materias[i][0];
                 FormatoTC(horario[hora][dia],10);
@@ -307,5 +305,15 @@ void CrearHorario(char ***horario, char Dato[13]){
 
     //GenerarHorarioTxT(horario,DatoH,14);
 
+}
+
+int conversor(char Dato[30]){
+
+    int n=0;
+    for(int i=0; Dato[i]!='\0'; i++){
+        n=n*10+(Dato[i]-'0');
+
+    }
+    return n;
 }
 

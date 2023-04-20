@@ -9,8 +9,6 @@ void RegistroMaterias(char ***Materias, int Num)
     cout<<endl;
     Num++;
 
-    Materias = new char**[Num];
-
 
     ofstream Archivo;//Variable para escribir el txt.
     int CT=0;
@@ -27,7 +25,7 @@ void RegistroMaterias(char ***Materias, int Num)
         Materias[i][0] = new char[10];
         cout<<"Ingrese el codigo de la materia ["<<i<<"] : ";
         cin>>Materias[i][0];
-        FormatoTC(Materias[i][0],10);
+        //FormatoTC(Materias[i][0],10);
         cout<<endl;
         Materias[i][1] = new char[25];
         cout<<"Ingrese el nombre de la materia : ";
@@ -37,17 +35,17 @@ void RegistroMaterias(char ***Materias, int Num)
         Materias[i][2] = new char[10];
         cout<<"Ingrese Horas de clase teorica : ";
         cin>>Materias[i][2];
-        FormatoTC(Materias[i][2],10);
+        //FormatoTC(Materias[i][2],10);
         cout<<endl;
         Materias[i][3] = new char[10];
         cout<<"Ingrese Horas de clase practica: ";
         cin>>Materias[i][3];
-        FormatoTC(Materias[i][3],10);
+        //FormatoTC(Materias[i][3],10);
         cout<<endl;
         Materias[i][4] = new char[10];
         cout<<"Ingrese el numero de creditos de la materia: ";
         cin>>Materias[i][4];
-        FormatoTC(Materias[i][4],10);
+        //FormatoTC(Materias[i][4],10);
         cout<<endl;
     }
 
@@ -122,8 +120,6 @@ void GenerarHorario(char ***horario)
 
     /////////////////////Generar memoria///////////////////////
 
-
-    horario = new char**[14];
     int dia = 0, dia2 = 0, hora = 0;
     char eleccion;
 

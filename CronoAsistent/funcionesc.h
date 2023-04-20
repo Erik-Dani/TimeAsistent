@@ -11,6 +11,7 @@
 using namespace std;
 
 //void RegistroMaterias(char ***, int , char []);
+int conversor(char []);
 void GenerarTxT_M(char***,char [], int);
 void Imprimir(char ***, int );
 void ImprimirMaterias(char ***, int );
