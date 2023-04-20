@@ -10,9 +10,9 @@
 
 using namespace std;
 
-void RegistroMaterias(char ***, int , char []);
-void GenerarTxT(char*** horario,char *Caja, int Fila,int columna, int dim);
-void ImprimirHorario(char ***, int );
+//void RegistroMaterias(char ***, int , char []);
+void GenerarTxT_M(char***,char [], int);
+void Imprimir(char ***, int );
 void ImprimirMaterias(char ***, int );
 void MateriasFormat(char*** ); //Formato de cabecera de texto
 
@@ -26,5 +26,7 @@ int DatNum(char []);//pasa de str a int
 void AsignacionRandom(char ***, char ***, int ); //Asignar materias mode random
 void CrearHorario(char ***,char Dato[]);
 void MemoriaHorario(char ***);
+
+void random(char ***horario, char ***Materias, int Num);
 
 #endif // FUNCIONESC_H

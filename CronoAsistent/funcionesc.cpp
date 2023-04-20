@@ -1,18 +1,29 @@
 #include "funcionesc.h"
 
-void GenerarTxT(char*** horario,char *Caja, int Fila,int columna, int dim){
+void GenerarTxT_M(char*** Materias,char Dato[12], int Num){
+    int ML=0;
 
+    ofstream Archivo;//Variable para escribir el txt.
+      for (int a = 0; a < Num; a++) {
+          for (int b = 0; b < 5; b++) {
+              for (int c = 0; c < 25; c++) ML++;
+          }
+      }
+      ML+=(4*Num);
+
+      char *Caja=new char [ML];
       int paso=-1;
+      char Horario[20];
 
     ////////////////Pasar datos a Arreglo Lineal//////////////
-    for (int a = 0; a < Fila; a++) {
-        for (int b = 0; b < columna; b++) {
-            for (int c = 0; c < dim; c++) {
-                if (horario[a][b][c]=='\0') break;
+    for (int a = 0; a < Num; a++) {
+        for (int b = 0; b < 6; b++) {
+            for (int c = 0; c < 10; c++) {
+                if (Materias[a][b][c]=='\0') break;
 
-                if (horario[a][b][c]!='\0'){
+                if (Materias[a][b][c]!='\0'){
                     paso++;
-                    Caja[paso]= horario[a][b][c];
+                    Caja[paso]= Materias[a][b][c];
                 }
             }
             paso++;
@@ -21,6 +32,16 @@ void GenerarTxT(char*** horario,char *Caja, int Fila,int columna, int dim){
         paso++;
         Caja[paso]='\n';
     }
+
+    //////////////////Escribimos el Archivo///////////////////
+
+    Archivo.open(Dato);
+    Archivo <<Caja ;
+    Archivo.close();
+
+    //////////////////Borrar memoria reservada///////////////
+    delete[] Caja;
+    Caja=nullptr;
 }
 
 void ImprimirMaterias(char ***Matriz, int Num){
@@ -36,7 +57,7 @@ void ImprimirMaterias(char ***Matriz, int Num){
     }
 }
 
-void ImprimirHorario(char ***Matriz, int Num){
+void Imprimir(char ***Matriz, int Num){
     for (int a = 0; a < Num; a++) {
         for (int b = 0; b < 6; b++) {
             for (int c = 0; c < 10; c++) {
@@ -75,8 +96,6 @@ void RegMateria(char ***Materias, int a){
 }
 
 void RegistroMaterias(char ***Materias, int Num, char dato[14]){
-    int ML;
-    ofstream Archivo;
 
     for(int i=1; i<Num; i++){
 
@@ -105,19 +124,7 @@ void RegistroMaterias(char ***Materias, int Num, char dato[14]){
         FormatoTC(Materias[i][4],10);
     }
 
-    for (int a = 0; a < Num; a++) {
-        for (int b = 0; b < 5; b++) {
-            for (int c = 0; c < 25; c++) ML++;
-        }
-    }
-    ML+=(4*Num);
-
-    char *Caja=new char [ML];
-    GenerarTxT(Materias,Caja,Num,5,25);
-
-    Archivo.open(dato);
-    Archivo << Caja ;
-    Archivo.close();
+    GenerarTxT_M(Materias,dato,Num);
 }
 void MateriasFormat(char*** Materias){
 
@@ -219,24 +226,27 @@ void rellenarArreglo(char *arreglo, int longitud, char relleno) {
     }
 }
 
-void AsignacionRandom(char ***horario, char ***Materias, int Num){
+void random(char ***horario, char ***Materias, int Num){
 
     for(int i = 0; i<Num; i++){
+
         int aux = (DatNum(Materias[i][4])*3)-(DatNum(Materias[i][2])+DatNum(Materias[i][3]));
-        cout<<"la operacion da: "<<aux<<endl;
+
         int Q = 0;
         while(Q<aux){
-
             int dia = 1+rand()%(6-1);
+
             int hora = 1+rand()%(14-1);
+
             cout<<dia<<" "<<hora<<endl;
 
             if(horario[hora][dia][0] == ' '){
+
                 cout<<"Funciona :D"<<endl;
                 Q++;
                 horario[hora][dia] = Materias[i][0];
                 FormatoTC(horario[hora][dia],10);
-                ImprimirHorario(horario,14);
+                Imprimir(horario,14);
             }
         }
     }
@@ -263,7 +273,7 @@ void CrearHorario(char ***horario, char Dato[13]){
 
     FormatoHorario(horario);
 
-    ImprimirHorario(horario,14);
+    Imprimir(horario,14);
 
     do {
         cout << "//////////////////////Registro de Horario/////////////////////" << endl;
@@ -284,7 +294,7 @@ void CrearHorario(char ***horario, char Dato[13]){
             horario[hora][dia2]=horario[hora][dia];
 
             FormatoTC(horario[hora][dia],10);
-            ImprimirHorario(horario,14);
+            Imprimir(horario,14);
         }
         else {
             cout<< "Ya esta ocupado el horario, intenta con otro. "<<endl;

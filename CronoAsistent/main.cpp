@@ -1,44 +1,42 @@
 #include <iostream>
 #include <fstream>
 #include <istream>
-#include <time.h>
-#include <stdlib.h>
+
 #include "funcionesc.h"
+#include "funcionopc.h"
 
 using namespace std;
 
-int main()
+int main(void)
 {
     /////////Declaracion e inicializacion de Variables///////
 
-    ofstream Archivo2;
     char ***Materias=nullptr; // Arreglo dinamico con ptr
-    int Num=0;//Numero de materias;
-    char documento[10];
-    char ***horario = nullptr;
+    char ***horario=nullptr; // Arreglo dinamico con ptr
+    int Numero,opccion=0;
+
+    cout<<"ingrese el numero de materias: ";
+    cin>> Numero;
+
+    RegistroMaterias(Materias,Numero);
+    cout<<endl;
+    cout<<endl;
+    GenerarHorario(horario);
+    cout<<"Para la asignacion de horas de estudio independiente: \n1-->Generar horario Random.\n2-->Ingresar por teclado.\n";
+    cout<<"Opcion: ";
+    cin>>opccion;
+    switch (opccion) {
+    case 1:
+        random(horario,Materias,Numero);
+        Imprimir(horario,14);
+        break;
+    case 2: GenerarHorario(horario);
+        break;
+    }
+
+
 
     ///////////////Recepcion de datos por teclado////////////
-
-    cout<<"ingrese su numero de documento: ";
-    cin>>documento;
-
-    cout<<"ingrese el numero de materias que va a registrar: ";
-    cin>>Num;
-    Num++;
-    //////////////// Matriz dinamica de Datos///////////////
-
-    Materias = new char**[Num];
-    Materias[0]=new char*[6];
-    ////////////////////Registrar Materias /////////////////
-
-    RegistroMaterias(Materias,Num,documento);
-
-    ////////////////Imprimir y Guardar Datos///////////////
-    MateriasFormat(Materias);
-
-    ImprimirMaterias(Materias,Num);
-
-    //////////////////////Segunda parte///////////////////
-
-            //CrearHorario(horario,documento);
 }
+
+
