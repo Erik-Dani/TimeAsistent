@@ -6,8 +6,10 @@ CONFIG -= qt
 SOURCES += \
         dataextract.cpp \
         funciones.cpp \
+        funcionesc.cpp \
         main.cpp
 
 HEADERS += \
     dataextract.h \
-    funciones.h
+    funciones.h \
+    funcionesc.h
