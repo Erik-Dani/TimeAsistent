@@ -1,29 +1,18 @@
 #include "funcionesc.h"
 
+void GenerarTxT(char*** horario,char *Caja, int Fila,int columna, int dim){
 
-void GenerarTxT(char*** Materias,char Dato[20], int Fila,int Columna, int dim){
-    int ML=0;
-
-    ofstream Archivo;//Variable para escribir el txt.
-      for (int a = 0; a < Fila; a++) {
-          for (int b = 0; b < Columna; b++) {
-              for (int c = 0; c < dim; c++) ML++;
-          }
-      }
-      ML+=(4*Fila);
-
-      char *Caja=new char [ML];
       int paso=-1;
 
     ////////////////Pasar datos a Arreglo Lineal//////////////
     for (int a = 0; a < Fila; a++) {
-        for (int b = 0; b < Columna; b++) {
+        for (int b = 0; b < columna; b++) {
             for (int c = 0; c < dim; c++) {
-                if (Materias[a][b][c]=='\0') break;
+                if (horario[a][b][c]=='\0') break;
 
-                if (Materias[a][b][c]!='\0'){
+                if (horario[a][b][c]!='\0'){
                     paso++;
-                    Caja[paso]= Materias[a][b][c];
+                    Caja[paso]= horario[a][b][c];
                 }
             }
             paso++;
@@ -32,22 +21,25 @@ void GenerarTxT(char*** Materias,char Dato[20], int Fila,int Columna, int dim){
         paso++;
         Caja[paso]='\n';
     }
-
-    //////////////////Escribimos el Archivo///////////////////
-
-    Archivo.open(Dato);
-    Archivo <<Caja ;
-    Archivo.close();
-
-    //////////////////Borrar memoria reservada///////////////
-    delete[] Caja;
-    Caja=nullptr;
 }
 
-void Imprimir(char ***Matriz, int Num,int tam, int dim){
+void ImprimirMaterias(char ***Matriz, int Num){
     for (int a = 0; a < Num; a++) {
-        for (int b = 0; b < tam; b++) {
-            for (int c = 0; c < dim; c++) {
+        for (int b = 0; b < 5; b++) {
+            for (int c = 0; c < 25; c++) {
+                cout<<Matriz[a][b][c];
+                if (Matriz[a][b][c]=='\0') break;
+            }
+            cout<<" | ";
+        }
+        cout<<endl;
+    }
+}
+
+void ImprimirHorario(char ***Matriz, int Num){
+    for (int a = 0; a < Num; a++) {
+        for (int b = 0; b < 6; b++) {
+            for (int c = 0; c < 10; c++) {
                 cout<<Matriz[a][b][c];
                 if (Matriz[a][b][c]=='\0') break;
             }
@@ -82,31 +74,50 @@ void RegMateria(char ***Materias, int a){
     FormatoTC(Materias[a][0],10);
 }
 
-void RegistroMaterias(char ***Materias, int Num){
+void RegistroMaterias(char ***Materias, int Num, char dato[14]){
+    int ML;
+    ofstream Archivo;
 
     for(int i=1; i<Num; i++){
+
         Materias[i]=new char*[6];
+
         RegMateria(Materias,i);
-//        Materias[i][1] = new char[25];
-//        cout<<"Ingrese el nombre de la materia : ";
-//        cin>>Materias[i][1];
-//        FormatoTC(Materias[i][1],25);
 
-//        Materias[i][2] = new char[3];
-//        cout<<"Ingrese Horas de clase teorica : ";
-//        cin>>Materias[i][2];
-//        FormatoTC(Materias[i][2],10);
+        Materias[i][1] = new char[25];
+        cout<<"Ingrese el nombre de la materia : ";
+        cin>>Materias[i][1];
+        FormatoTC(Materias[i][1],25);
 
-//        Materias[i][3] = new char[3];
-//        cout<<"Ingrese Horas de clase practica: ";
-//        cin>>Materias[i][3];
-//        FormatoTC(Materias[i][3],10);
+        Materias[i][2] = new char[3];
+        cout<<"Ingrese Horas de clase teorica : ";
+        cin>>Materias[i][2];
+        FormatoTC(Materias[i][2],10);
 
-//        Materias[i][4] = new char[3];
-//        cout<<"Ingrese el numero de creditos de la materia: ";
-//        cin>>Materias[i][4];
-//        FormatoTC(Materias[i][4],10);
+        Materias[i][3] = new char[3];
+        cout<<"Ingrese Horas de clase practica: ";
+        cin>>Materias[i][3];
+        FormatoTC(Materias[i][3],10);
+
+        Materias[i][4] = new char[3];
+        cout<<"Ingrese el numero de creditos de la materia: ";
+        cin>>Materias[i][4];
+        FormatoTC(Materias[i][4],10);
     }
+
+    for (int a = 0; a < Num; a++) {
+        for (int b = 0; b < 5; b++) {
+            for (int c = 0; c < 25; c++) ML++;
+        }
+    }
+    ML+=(4*Num);
+
+    char *Caja=new char [ML];
+    GenerarTxT(Materias,Caja,Num,5,25);
+
+    Archivo.open(dato);
+    Archivo << Caja ;
+    Archivo.close();
 }
 void MateriasFormat(char*** Materias){
 
@@ -225,8 +236,66 @@ void AsignacionRandom(char ***horario, char ***Materias, int Num){
                 Q++;
                 horario[hora][dia] = Materias[i][0];
                 FormatoTC(horario[hora][dia],10);
-                Imprimir(horario,14,6,10);
+                ImprimirHorario(horario,14);
             }
         }
     }
 }
+
+void CrearHorario(char ***horario, char Dato[13]){
+
+    horario = new char**[14];
+    int dia = 0, dia2 = 0, hora = 0;
+    char eleccion = ' ';
+
+
+    for (int i = 0; i < 14; i++) {
+        horario[i] = new char*[6];
+        for (int j = 0; j < 6; j++) {
+            horario[i][j] = new char[10];
+        }
+    }
+    ///////////////Nombre para Horario Formato TXT////////////
+
+    char DatoH[14]; DatoH[0]='H'; DatoH[1]='_';
+
+    for (int i = 2; Dato[i]!='\0'; i++) DatoH[i] = Dato[i-2];
+
+    FormatoHorario(horario);
+
+    ImprimirHorario(horario,14);
+
+    do {
+        cout << "//////////////////////Registro de Horario/////////////////////" << endl;
+
+        cout << "Ingrese el primer dia que desea registrar: " << endl;
+        DiaFP();
+        cin >> dia;
+        cout << "Ingrese el segundo dia que desea registrar: " << endl;
+        DiaFP();
+        cin >> dia2;
+        HoraFP();
+        cin >> hora;
+
+        if (horario[hora][dia][0] == ' ' && horario[hora][dia2][0] == ' ') {
+            cout << "Ingresa el codigo de la materia: ";
+            cin >> horario[hora][dia];
+            horario[hora][dia]=horario[hora][dia];
+            horario[hora][dia2]=horario[hora][dia];
+
+            FormatoTC(horario[hora][dia],10);
+            ImprimirHorario(horario,14);
+        }
+        else {
+            cout<< "Ya esta ocupado el horario, intenta con otro. "<<endl;
+        }
+        cout << "\nMateria agregada, quiere ingresar otra materia? si=(Pulsa cualquier tecla.\nNo, pulsa  'n' para terminar: ";
+        cin >> eleccion;
+        cout << endl;
+
+    } while (eleccion != 'n');
+
+    //GenerarHorarioTxT(horario,DatoH,14);
+
+}
+
