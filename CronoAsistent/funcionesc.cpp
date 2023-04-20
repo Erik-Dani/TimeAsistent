@@ -1,25 +1,24 @@
 #include "funcionesc.h"
 
 
-void GenerarTxT(char*** Materias,char Dato[12], int Num){
+void GenerarTxT(char*** Materias,char Dato[20], int Fila,int Columna, int dim){
     int ML=0;
 
     ofstream Archivo;//Variable para escribir el txt.
-      for (int a = 0; a < Num; a++) {
-          for (int b = 0; b < 5; b++) {
-              for (int c = 0; c < 25; c++) ML++;
+      for (int a = 0; a < Fila; a++) {
+          for (int b = 0; b < Columna; b++) {
+              for (int c = 0; c < dim; c++) ML++;
           }
       }
-      ML+=(4*Num);
+      ML+=(4*Fila);
 
       char *Caja=new char [ML];
       int paso=-1;
-      char Horario[20];
 
     ////////////////Pasar datos a Arreglo Lineal//////////////
-    for (int a = 0; a < Num; a++) {
-        for (int b = 0; b < 5; b++) {
-            for (int c = 0; c < 25; c++) {
+    for (int a = 0; a < Fila; a++) {
+        for (int b = 0; b < Columna; b++) {
+            for (int c = 0; c < dim; c++) {
                 if (Materias[a][b][c]=='\0') break;
 
                 if (Materias[a][b][c]!='\0'){
@@ -45,10 +44,10 @@ void GenerarTxT(char*** Materias,char Dato[12], int Num){
     Caja=nullptr;
 }
 
-void Imprimir(char ***Matriz, int Num,int tam){
+void Imprimir(char ***Matriz, int Num,int tam, int dim){
     for (int a = 0; a < Num; a++) {
         for (int b = 0; b < tam; b++) {
-            for (int c = 0; c < 25; c++) {
+            for (int c = 0; c < dim; c++) {
                 cout<<Matriz[a][b][c];
                 if (Matriz[a][b][c]=='\0') break;
             }
@@ -123,9 +122,12 @@ void MateriasFormat(char*** Materias){
 
 void FormatoHorario(char*** horario) {
 
+
     for (int i = 0; i < 14; i++) {
         for (int j = 0; j < 6; j++) {
-            for (int k = 0; k < 10; k++) horario[i][j][k] = ' ';
+            for (int k = 0; k < 10; k++) {
+                horario[i][j][k] = ' ';
+            }
         }
     }
 
@@ -203,5 +205,28 @@ void rellenarArreglo(char *arreglo, int longitud, char relleno) {
             arreglo[i] = relleno;
         }
         arreglo[longitud] = '\0';
+    }
+}
+
+void AsignacionRandom(char ***horario, char ***Materias, int Num){
+
+    for(int i = 0; i<Num; i++){
+        int aux = (DatNum(Materias[i][4])*3)-(DatNum(Materias[i][2])+DatNum(Materias[i][3]));
+        cout<<"la operacion da: "<<aux<<endl;
+        int Q = 0;
+        while(Q<aux){
+
+            int dia = 1+rand()%(6-1);
+            int hora = 1+rand()%(14-1);
+            cout<<dia<<" "<<hora<<endl;
+
+            if(horario[hora][dia][0] == ' '){
+                cout<<"Funciona :D"<<endl;
+                Q++;
+                horario[hora][dia] = Materias[i][0];
+                FormatoTC(horario[hora][dia],10);
+                Imprimir(horario,14,6,10);
+            }
+        }
     }
 }

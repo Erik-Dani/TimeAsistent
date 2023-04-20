@@ -11,8 +11,8 @@
 using namespace std;
 
 void RegistroMaterias(char ***, int);
-void GenerarTxT(char***,char[], int);
-void Imprimir(char ***, int , int );
+void GenerarTxT(char***,char[], int, int,int);
+void Imprimir(char ***, int , int, int );
 void MateriasFormat(char*** ); //Formato de cabecera de texto
 
 ///////////////////// F2 ///////////////////
@@ -22,6 +22,7 @@ void HoraFP();//muestra enunciado
 void DiaFP();//muestra enunciado
 void FormatoTC(char *, int ); //formatea una cadena
 int DatNum(char []);//pasa de str a int
+void AsignacionRandom(char ***horario, char ***Materias, int Num); //Asignar materias mode random
 
 void rellenarArreglo(char *arreglo, int longitud, char relleno) ;
 
