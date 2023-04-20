@@ -118,7 +118,7 @@ release/dataextract.o: ../CronoAsistent/dataextract.cpp ../CronoAsistent/dataext
 release/funciones.o: ../CronoAsistent/funciones.cpp ../CronoAsistent/funciones.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\funciones.o ..\CronoAsistent\funciones.cpp
 
-release/funcionesc.o: ../CronoAsistent/funcionesc.cpp ../CronoAsistent/funcionesc.h
+release/funcionesc.o: ../CronoAsistent/funcionesc.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\funcionesc.o ..\CronoAsistent\funcionesc.cpp
 
 release/main.o: ../CronoAsistent/main.cpp ../CronoAsistent/funcionesc.h

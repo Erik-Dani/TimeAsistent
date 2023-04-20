@@ -118,7 +118,7 @@ debug/dataextract.o: ../CronoAsistent/dataextract.cpp ../CronoAsistent/dataextra
 debug/funciones.o: ../CronoAsistent/funciones.cpp ../CronoAsistent/funciones.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\funciones.o ..\CronoAsistent\funciones.cpp
 
-debug/funcionesc.o: ../CronoAsistent/funcionesc.cpp ../CronoAsistent/funcionesc.h
+debug/funcionesc.o: ../CronoAsistent/funcionesc.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\funcionesc.o ..\CronoAsistent\funcionesc.cpp
 
 debug/main.o: ../CronoAsistent/main.cpp ../CronoAsistent/funcionesc.h
