@@ -14,11 +14,11 @@ int main(void)
     char ***Materias=nullptr; // Arreglo dinamico con ptr
     char ***horario=nullptr; // Arreglo dinamico con ptr
     int Numero,opccion=0;
-    Materias = new char**[Numero];
-    horario = new char**[14];
 
     cout<<"ingrese el numero de materias: ";
     cin>> Numero;
+    Materias = new char**[Numero];
+    horario = new char**[14];
 
     RegistroMaterias(Materias,Numero);
     cout<<endl;
@@ -36,6 +36,7 @@ int main(void)
         break;
     }
 
+    /////////////////// Liberar memoria //////////////////////
     for (int i = 0; i < 14; i++) {
         for (int j = 0; j < 6; j++) {
             delete[] horario[i][j];

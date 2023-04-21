@@ -29,5 +29,5 @@ void CrearHorario(char ***,char Dato[]);
 void MemoriaHorario(char ***);
 
 void random(char ***horario, char ***Materias, int Num);
-
+int NumReturn(char []);
 #endif // FUNCIONESC_H

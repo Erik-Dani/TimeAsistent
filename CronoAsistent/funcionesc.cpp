@@ -106,22 +106,22 @@ void RegistroMaterias(char ***Materias, int Num, char dato[14]){
         Materias[i][1] = new char[25];
         cout<<"Ingrese el nombre de la materia : ";
         cin>>Materias[i][1];
-        FormatoTC(Materias[i][1],25);
+        //FormatoTC(Materias[i][1],25);
 
         Materias[i][2] = new char[3];
         cout<<"Ingrese Horas de clase teorica : ";
         cin>>Materias[i][2];
-        FormatoTC(Materias[i][2],10);
+        //FormatoTC(Materias[i][2],10);
 
         Materias[i][3] = new char[3];
         cout<<"Ingrese Horas de clase practica: ";
         cin>>Materias[i][3];
-        FormatoTC(Materias[i][3],10);
+        //FormatoTC(Materias[i][3],10);
 
         Materias[i][4] = new char[3];
         cout<<"Ingrese el numero de creditos de la materia: ";
         cin>>Materias[i][4];
-        FormatoTC(Materias[i][4],10);
+        //FormatoTC(Materias[i][4],10);
     }
 
     GenerarTxT_M(Materias,dato,Num);
@@ -132,7 +132,7 @@ void MateriasFormat(char*** Materias){
     Materias[0][1]= "Nombre                   ";
     Materias[0][2]= "H_Teoria  ";
     Materias[0][3]= "H_Practica";
-    Materias[0][4]= "Codigo    ";
+    Materias[0][4]= "Creditos  ";
 }
 ///////////////////////FUNCIONES 2////////////////////////////////
 
@@ -229,22 +229,15 @@ void rellenarArreglo(char *arreglo, int longitud, char relleno) {
 void random(char ***horario, char ***Materias, int Num){
 
     for(int i = 1; i<Num; i++){
-
-        int aux = (conversor(Materias[i][4])*3)-(conversor(Materias[i][2])+conversor(Materias[i][3]));
-        cout<<"la operacion da: "<<aux<<endl;
+        int aux = (NumReturn(Materias[i][4])*3)-(NumReturn(Materias[i][2]))+(NumReturn(Materias[i][3]));
         int Q = 0;
         while(Q<aux){
             int dia = 1+rand()%(6-1);
-
             int hora = 1+rand()%(14-1);
-
-            cout<<dia<<" "<<hora<<endl;
-
             if(horario[hora][dia][0] == ' '){
                 Q++;
                 horario[hora][dia] = Materias[i][0];
                 FormatoTC(horario[hora][dia],10);
-                Imprimir(horario,14);
             }
         }
     }
@@ -317,3 +310,13 @@ int conversor(char Dato[30]){
     return n;
 }
 
+int NumReturn(char Caja[20]){
+    char Cajanum[20];
+    for (int c =0, p=0 ; Caja[c]!='\0';c++) {
+        if(Caja[c]>=48 && Caja[c]<=57){
+            Cajanum[p]=Caja[c];
+            p++;
+        }
+    }
+     return conversor(Cajanum);
+}

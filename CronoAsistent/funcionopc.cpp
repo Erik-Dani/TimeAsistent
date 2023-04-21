@@ -25,7 +25,7 @@ void RegistroMaterias(char ***Materias, int Num)
         Materias[i][0] = new char[10];
         cout<<"Ingrese el codigo de la materia ["<<i<<"] : ";
         cin>>Materias[i][0];
-        //FormatoTC(Materias[i][0],10);
+        FormatoTC(Materias[i][0],10);
         cout<<endl;
         Materias[i][1] = new char[25];
         cout<<"Ingrese el nombre de la materia : ";
@@ -35,17 +35,17 @@ void RegistroMaterias(char ***Materias, int Num)
         Materias[i][2] = new char[10];
         cout<<"Ingrese Horas de clase teorica : ";
         cin>>Materias[i][2];
-        //FormatoTC(Materias[i][2],10);
+        FormatoTC(Materias[i][2],10);
         cout<<endl;
         Materias[i][3] = new char[10];
         cout<<"Ingrese Horas de clase practica: ";
         cin>>Materias[i][3];
-        //FormatoTC(Materias[i][3],10);
+        FormatoTC(Materias[i][3],10);
         cout<<endl;
         Materias[i][4] = new char[10];
         cout<<"Ingrese el numero de creditos de la materia: ";
         cin>>Materias[i][4];
-        //FormatoTC(Materias[i][4],10);
+        FormatoTC(Materias[i][4],10);
         cout<<endl;
     }
 
@@ -113,7 +113,7 @@ void GenerarHorario(char ***horario)
 
     ///////////////Recepcion de datos por teclado////////////
 
-    cout<<"ingrese el numbre con el que desea guardar su Horario de clases:  ";
+    cout<<"ingrese el Nommbre con el que desea guardar su Horario de clases:  ";
     cin>>name;
     cout<<endl;
     cout<<endl;
@@ -157,6 +157,10 @@ void GenerarHorario(char ***horario)
 
             horario[hora][dia]=horario[hora][dia];
             horario[hora][dia2]=horario[hora][dia];
+            horario[hora+1][dia]=horario[hora][dia];
+            horario[hora+1][dia2]=horario[hora][dia];
+            horario[hora+2][dia]=horario[hora][dia];
+            horario[hora+2][dia2]=horario[hora][dia];
 
             FormatoTC(horario[hora][dia],10);
             Imprimir(horario,14);
